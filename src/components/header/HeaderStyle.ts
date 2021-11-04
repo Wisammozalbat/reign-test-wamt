@@ -10,4 +10,12 @@ export const HeaderContainer = styled.header`
   color: #3b3b3b;
   box-shadow: 0 1px 4px 0 rgba(0, 21, 41, 0.12);
   background-image: linear-gradient(to bottom, #ececec -32%, #fff 124%);
+  z-index: 20;
+  position: relative;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
 `;

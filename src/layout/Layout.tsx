@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../components/header/Header';
+import { LayoutContainer } from './LayoutStyle';
 
 interface LayoutI {
   children?: any;
@@ -7,10 +8,10 @@ interface LayoutI {
 
 const Layout: React.FC<LayoutI> = ({ children }) => {
   return (
-    <div>
+    <LayoutContainer>
       <Header />
-      <div>{children}</div>
-    </div>
+      <div className="content">{children}</div>
+    </LayoutContainer>
   );
 };
 

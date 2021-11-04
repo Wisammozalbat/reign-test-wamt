@@ -24,6 +24,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+button,
+label,
+span {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  background-color: transparent;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -36,4 +54,5 @@ code {
 /* Set default font-size to 10px //1 rem = 10px; 10px/16px = 62.5%*/
 html {
   font-size: 62.5%;
+  background-color: #fcfcfc;
 }

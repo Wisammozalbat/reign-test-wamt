@@ -4,4 +4,7 @@ export const MainContainer = styled.div`
   width: 100%;
   padding: 7rem 15rem 9.8rem;
   font-family: 'Roboto';
+  background-color: #fcfcfc;
+  display: flex;
+  flex-direction: column;
 `;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const TabsContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin: 0 auto;
+  margin: 0 auto 6.3rem;
 `;
 
 export const Tab = styled.button`
@@ -20,6 +20,7 @@ export const Tab = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  font-weight: 500;
 
   &:hover {
     transition: all 0.3s;
@@ -28,7 +29,6 @@ export const Tab = styled.button`
 
   &.active {
     color: #1797ff;
-    font-weight: 600;
   }
 
   &:first-of-type {
