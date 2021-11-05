@@ -5,8 +5,9 @@ import Main from './containers/main/Main';
 import Layout from './layout/Layout';
 
 function App() {
+  console.log(process.env.REACT_APP_PUBLIC_URL);
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.REACT_APP_PUBLIC_URL}>
       <Layout>
         <Main />
       </Layout>
