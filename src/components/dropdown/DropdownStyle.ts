@@ -76,4 +76,8 @@ export const DropdownContainer = styled.div`
     border: 1px solid #2e2e2e;
     text-transform: capitalize;
   }
+
+  @media (max-width: 420px) {
+    width: 100%;
+  }
 `;

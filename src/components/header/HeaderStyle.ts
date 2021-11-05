@@ -18,4 +18,16 @@ export const HeaderContainer = styled.header`
     text-decoration: none;
     cursor: pointer;
   }
+
+  @media (max-width: 768px) {
+    padding: 5rem 10rem;
+  }
+
+  @media (max-width: 550px) {
+    padding: 4rem 6rem;
+  }
+
+  @media (max-width: 420px) {
+    padding: 3rem 3rem;
+  }
 `;

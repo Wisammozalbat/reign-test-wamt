@@ -7,4 +7,8 @@ export const PostsContainer = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   column-gap: 4rem;
   row-gap: 3rem;
+
+  @media (max-width: 420px) {
+    grid-template-columns: 1fr;
+  }
 `;

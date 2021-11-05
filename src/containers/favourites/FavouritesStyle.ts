@@ -15,4 +15,8 @@ export const FavouritesContainer = styled.div`
     color: #606060;
     text-transform: capitalize;
   }
+
+  @media (max-width: 420px) {
+    grid-template-columns: 1fr;
+  }
 `;

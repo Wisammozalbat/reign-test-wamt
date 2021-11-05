@@ -4,6 +4,18 @@ export const TabsContainer = styled.div`
   display: flex;
   justify-content: center;
   margin: 0 auto 6.3rem;
+
+  @media (max-width: 768px) {
+    margin: 0 auto 5rem;
+  }
+
+  @media (max-width: 550px) {
+    margin: 0 auto 4rem;
+  }
+
+  @media (max-width: 420px) {
+    margin: 0 auto 3rem;
+  }
 `;
 
 export const Tab = styled.button`
