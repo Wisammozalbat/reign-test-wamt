@@ -11,12 +11,14 @@ interface DropdownI {
   options: string[];
   addClasses?: string;
   defaultValue: string;
+  onChange: (category: string) => void;
 }
 
 const Dropdown: React.FC<DropdownI> = ({
   options,
   addClasses,
   defaultValue,
+  onChange,
 }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [dropdownValue, setDropdownValue] = useState(defaultValue);
@@ -29,6 +31,7 @@ const Dropdown: React.FC<DropdownI> = ({
   const toggleDropdown = () => setDropdownOpen((curr) => !curr);
 
   const onSelectHandler = (option: string) => {
+    onChange(option);
     setDropdownValue(option);
     setDropdownOpen(false);
   };

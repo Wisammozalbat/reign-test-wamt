@@ -1,4 +1,12 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const clickAnimation = keyframes`
+  100% {
+    width: 3.5rem;
+        height: 3.5rem;
+        opacity: 0;
+  }
+`;
 
 export const ItemContainer = styled.div`
   display: flex;
@@ -6,6 +14,11 @@ export const ItemContainer = styled.div`
   border-radius: 6px;
   border: 1px solid #606060;
   justify-content: space-between;
+  transition: all 0.3s;
+
+  &:hover {
+    opacity: 0.4;
+  }
 
   .left {
     display: flex;
@@ -32,6 +45,12 @@ export const ItemContainer = styled.div`
       font-size: 1.4rem;
       letter-spacing: 0.25px;
       font-weight: 500;
+      cursor: pointer;
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
     }
   }
 
@@ -48,6 +67,25 @@ export const ItemContainer = styled.div`
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ff1212;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        opacity: 1;
+        transition: all 0.2s;
+      }
+
+      &:focus::before {
+        animation: ${clickAnimation} 0.3s linear;
+      }
     }
   }
 `;
