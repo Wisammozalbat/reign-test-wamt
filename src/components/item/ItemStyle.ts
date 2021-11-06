@@ -16,6 +16,11 @@ export const ItemContainer = styled.div`
   justify-content: space-between;
   transition: all 0.3s;
 
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
   &:hover {
     opacity: 0.4;
   }
@@ -46,11 +51,6 @@ export const ItemContainer = styled.div`
       letter-spacing: 0.25px;
       font-weight: 500;
       cursor: pointer;
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
     }
   }
 

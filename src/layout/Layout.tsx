@@ -8,7 +8,7 @@ interface LayoutI {
 
 const Layout: React.FC<LayoutI> = ({ children }) => {
   return (
-    <LayoutContainer>
+    <LayoutContainer data-testid="layout-container">
       <Header />
       <div className="content">{children}</div>
     </LayoutContainer>

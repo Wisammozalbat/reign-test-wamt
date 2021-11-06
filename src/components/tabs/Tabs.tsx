@@ -4,13 +4,6 @@ import { TabsContainer, Tab } from './TabsStyle';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 const Tabs: React.FC<RouteComponentProps> = ({ history }) => {
-  // useEffect(() => {
-  //   effect
-  //   return () => {
-  //     cleanup
-  //   }
-  // }, [location.pathname]);
-
   return (
     <TabsContainer>
       <Tab

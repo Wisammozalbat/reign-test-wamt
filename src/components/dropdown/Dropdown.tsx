@@ -5,8 +5,6 @@ import AngularIcon from '../../assets/images/angular.png';
 import ReactjsIcon from '../../assets/images/reactjs.png';
 import VuejsIcon from '../../assets/images/vuejs.png';
 
-// interface OptionI {}
-
 interface DropdownI {
   options: string[];
   addClasses?: string;
@@ -35,8 +33,10 @@ const Dropdown: React.FC<DropdownI> = ({
     setDropdownValue(option);
     setDropdownOpen(false);
   };
+
   return (
     <DropdownContainer
+      data-testid="dropdown-container"
       className={[addClasses, dropdownOpen ? 'opened' : ''].join(' ')}
     >
       {options?.length > 0 && (
@@ -51,13 +51,10 @@ const Dropdown: React.FC<DropdownI> = ({
                 type="radio"
                 defaultChecked={option === defaultValue}
                 defaultValue={option}
-                id={option.replaceAll(' ', '')}
+                id={option.replace(' ', '')}
                 name={'filter'}
               />
-              <label
-                onClick={() => onSelectHandler(option)}
-                htmlFor={option.replaceAll(' ', '')}
-              >
+              <label onClick={() => onSelectHandler(option)} htmlFor={option}>
                 <span>
                   <img src={images[option]} alt="" />
                 </span>

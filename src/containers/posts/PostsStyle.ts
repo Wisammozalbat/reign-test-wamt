@@ -8,6 +8,14 @@ export const PostsContainer = styled.div`
   column-gap: 4rem;
   row-gap: 3rem;
 
+  .no-data {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #606060;
+    text-transform: capitalize;
+  }
+
   @media (max-width: 420px) {
     grid-template-columns: 1fr;
   }

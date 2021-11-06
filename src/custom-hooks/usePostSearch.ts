@@ -1,8 +1,12 @@
-import { useEffect, useState } from 'react';
-import axiosInstance from '../config/axios';
+import { useCallback, useEffect, useState } from 'react';
 import { Post } from '../types/PostType';
+import getFavPosts from '../utils/getFavPosts';
+import axios from 'axios';
 
-export default function usePostSearch(query: string, pageNumber: number): any {
+export default function usePostSearch(
+  query: string = 'angular',
+  pageNumber: number = 0
+): any {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const [posts, setPosts] = useState<Post[]>([]);
@@ -12,18 +16,13 @@ export default function usePostSearch(query: string, pageNumber: number): any {
     setPosts([]);
   }, [query]);
 
-  useEffect(() => {
-    setLoading(true);
-    setError(false);
-
-    const favPosts = JSON.parse(
-      window.localStorage.getItem('favposts') || '[]'
-    );
-
-    axiosInstance
-      .get(`/search_by_date?query=${query}&page=${pageNumber}&hitsPerPage=8`)
+  const fetchPosts = useCallback(async (query: string, pageNumber: number) => {
+    await axios(
+      `https://hn.algolia.com/api/v1/search_by_date?query=${query}&page=${pageNumber}&hitsPerPage=8`
+    )
       .then((res) => {
-        setPosts((prevPosts) => [
+        const favPosts = getFavPosts();
+        setPosts((prevPosts: Post[]) => [
           ...prevPosts,
           ...res.data.hits.map((post: any) => {
             let newPost = {
@@ -50,10 +49,15 @@ export default function usePostSearch(query: string, pageNumber: number): any {
         setHasMore(res.data.hits.length > 0);
         setLoading(false);
       })
-      .catch((e) => {
-        setError(true);
-      });
-  }, [query, pageNumber]);
+      .catch((e) => setError(true))
+      .finally(() => setLoading(false));
+  }, []);
+
+  useEffect(() => {
+    setLoading(true);
+    setError(false);
+    fetchPosts(query, pageNumber);
+  }, [query, pageNumber, fetchPosts]);
 
   return { loading, error, posts, hasMore, setPosts };
 }

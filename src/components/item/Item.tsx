@@ -3,6 +3,7 @@ import { ItemContainer } from './ItemStyle';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { BiTime } from 'react-icons/bi';
 import { Post } from '../../types/PostType';
+import moment from 'moment';
 
 interface ItemI {
   innerRef?: React.Ref<HTMLInputElement>;
@@ -11,32 +12,19 @@ interface ItemI {
 }
 
 const Item: React.FC<ItemI> = ({ innerRef, post, onFavHandler }) => {
-  const newDate = new Date();
-  const oldDate = new Date(post.created);
-  const timeDiff = Math.floor(
-    Math.abs(newDate.getTime() - oldDate.getTime()) / 3600000
-  );
-
   return (
     <ItemContainer ref={innerRef}>
-      <div className="left">
+      <a href={post.url} target="_blank" rel="noreferrer" className="left">
         <div className="left-top">
           <BiTime className="icon" color={'#c0c0c0'} />
           <p>
-            {timeDiff === 0
-              ? `less than an hour`
-              : timeDiff === 1
-              ? `${timeDiff} hour`
-              : `${timeDiff} hours`}{' '}
-            ago by {post.author}
+            {moment(post.created).fromNow()} by {post.author}
           </p>
         </div>
         <div className="left-bottom">
-          <a href={post.url} target="_blank" rel="noreferrer">
-            {post.title}
-          </a>
+          <p>{post.title}</p>
         </div>
-      </div>
+      </a>
       <div className="right">
         <button onClick={() => onFavHandler(post)}>
           {post.favourite ? (

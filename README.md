@@ -1,3 +1,7 @@
+# Reign test by Wisam Mozalbat
+
+This is a challenge page designed by Reign and Developed by Wisam Mozalbat
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

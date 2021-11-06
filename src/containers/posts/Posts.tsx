@@ -13,6 +13,7 @@ interface PostsI {
 const Posts: React.FC<PostsI> = ({ onFavHandler }) => {
   const [pageNumber, setPageNumber] = useState<number>(0);
   const [query, setQuery] = useState<string>('angular');
+
   const { posts, setPosts, loading, hasMore } = usePostSearch(
     query,
     pageNumber
@@ -51,30 +52,41 @@ const Posts: React.FC<PostsI> = ({ onFavHandler }) => {
   };
 
   return (
-    <>
+    <React.Fragment>
       <Dropdown
         options={['angular', 'reactjs', 'vuejs']}
         defaultValue={'angular'}
         onChange={onCategoryChange}
       />
-      <PostsContainer>
-        {posts?.map((post: Post, index: number) => {
-          if (posts.length === index + 1)
-            return (
-              <Item
-                innerRef={lastPostElementRef}
-                post={post}
-                key={index}
-                onFavHandler={onToggleFavHandler}
-              />
-            );
-          return (
-            <Item post={post} key={index} onFavHandler={onToggleFavHandler} />
-          );
-        })}
-        {loading && <Loader />}
+      <PostsContainer data-testid="posts-container">
+        {loading ? (
+          <Loader />
+        ) : posts.length > 0 ? (
+          <>
+            {posts?.map((post: Post, index: number) => {
+              if (posts.length === index + 1)
+                return (
+                  <Item
+                    innerRef={lastPostElementRef}
+                    post={post}
+                    key={index}
+                    onFavHandler={onToggleFavHandler}
+                  />
+                );
+              return (
+                <Item
+                  post={post}
+                  key={index}
+                  onFavHandler={onToggleFavHandler}
+                />
+              );
+            })}
+          </>
+        ) : (
+          <p className="no-data">There are no posts available at the moment</p>
+        )}
       </PostsContainer>
-    </>
+    </React.Fragment>
   );
 };
 
