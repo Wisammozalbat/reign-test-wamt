@@ -2,6 +2,10 @@
 
 This is a challenge page designed by Reign and Developed by Wisam Mozalbat
 
+# Visit the deployed site
+
+[Deployed site](https://wisam-test-reign.netlify.app/dashboard)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
