@@ -16,6 +16,7 @@ export default function usePostSearch(
     setPosts([]);
   }, [query]);
 
+  //fetch posts from the api
   const fetchPosts = useCallback(async (query: string, pageNumber: number) => {
     await axios(
       `https://hn.algolia.com/api/v1/search_by_date?query=${query}&page=${pageNumber}&hitsPerPage=8`
@@ -25,6 +26,7 @@ export default function usePostSearch(
         setPosts((prevPosts: Post[]) => [
           ...prevPosts,
           ...res.data.hits.map((post: any) => {
+            //filter the needed data
             let newPost = {
               id: post.created_at_i,
               title: post.story_title,
@@ -35,10 +37,12 @@ export default function usePostSearch(
               favourite: false,
             };
 
+            //checks if its stored in fav posts
             const matched = favPosts.filter(
               (favPost: Post) => favPost.id === newPost.id
             );
 
+            // if it is changes favourite attribute to true
             if (matched.length > 0) {
               newPost.favourite = true;
             }

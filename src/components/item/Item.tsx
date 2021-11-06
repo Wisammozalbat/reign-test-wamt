@@ -11,6 +11,8 @@ interface ItemI {
   onFavHandler: (data: Post) => void;
 }
 
+// Item (Post) component.
+// the ref is optional because it is only assigned to the last actual item
 const Item: React.FC<ItemI> = ({ innerRef, post, onFavHandler }) => {
   return (
     <ItemContainer ref={innerRef}>

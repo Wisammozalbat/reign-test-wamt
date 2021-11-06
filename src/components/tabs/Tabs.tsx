@@ -3,6 +3,8 @@ import { TabsContainer, Tab } from './TabsStyle';
 
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 
+// Changes between 'All' tab and 'My Faves' tab to navigate between the to routes
+
 const Tabs: React.FC<RouteComponentProps> = ({ history }) => {
   return (
     <TabsContainer>

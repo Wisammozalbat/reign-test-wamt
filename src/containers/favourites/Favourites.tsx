@@ -3,6 +3,7 @@ import Dropdown from '../../components/dropdown/Dropdown';
 import Item from '../../components/item/Item';
 import { FavouritesContainer } from './FavouritesStyle';
 import { Post } from '../../types/PostType';
+import getPosts from '../../utils/getFavPosts';
 
 interface FavouritesI {
   onFavHandler: (data: Post) => void;
@@ -12,10 +13,11 @@ const Favourites: React.FC<FavouritesI> = ({ onFavHandler }) => {
   const [favPosts, setFavPosts] = useState<Post[]>([]);
   const [actualCategory, setActualCategory] = useState<string>('angular');
 
+  // get favourite posts from localstorage depending on the actual category
   const getFavPosts = (category: string) => {
-    const catPosts = JSON.parse(
-      window?.localStorage.getItem('favposts') || '[]'
-    ).filter((post: Post) => post.category === category);
+    const catPosts = getPosts().filter(
+      (post: Post) => post.category === category
+    );
     setFavPosts(catPosts);
   };
 

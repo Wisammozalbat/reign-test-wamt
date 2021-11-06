@@ -14,12 +14,17 @@ const Posts: React.FC<PostsI> = ({ onFavHandler }) => {
   const [pageNumber, setPageNumber] = useState<number>(0);
   const [query, setQuery] = useState<string>('angular');
 
+  // get the values from the custom hook
   const { posts, setPosts, loading, hasMore } = usePostSearch(
     query,
     pageNumber
   );
 
+  //observe the last element (post) to change the page number and add new posts
   const observer = useRef<any>();
+
+  // checks if the node is on screen, if it is, removes the
+  // ref and asigns it on the new last element
   const lastPostElementRef = useCallback(
     (node) => {
       if (loading) return;
@@ -39,6 +44,7 @@ const Posts: React.FC<PostsI> = ({ onFavHandler }) => {
     setPageNumber(0);
   };
 
+  // checks if the post is favourite already or not
   const onToggleFavHandler = (post: Post) => {
     const postsCopy = [
       ...posts.map((oldPost: Post) => {
@@ -59,9 +65,8 @@ const Posts: React.FC<PostsI> = ({ onFavHandler }) => {
         onChange={onCategoryChange}
       />
       <PostsContainer data-testid="posts-container">
-        {loading ? (
-          <Loader />
-        ) : posts.length > 0 ? (
+        {posts.length === 0 && loading && <Loader />}
+        {posts.length > 0 ? (
           <>
             {posts?.map((post: Post, index: number) => {
               if (posts.length === index + 1)
@@ -81,9 +86,14 @@ const Posts: React.FC<PostsI> = ({ onFavHandler }) => {
                 />
               );
             })}
+            {loading && <Loader />}
           </>
         ) : (
-          <p className="no-data">There are no posts available at the moment</p>
+          !loading && (
+            <p className="no-data">
+              There are no posts available at the moment
+            </p>
+          )
         )}
       </PostsContainer>
     </React.Fragment>

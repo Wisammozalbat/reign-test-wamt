@@ -20,14 +20,18 @@ const Dropdown: React.FC<DropdownI> = ({
 }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [dropdownValue, setDropdownValue] = useState(defaultValue);
+
+  // object with the icons of the 3 categories
   const images: { [key: string]: string } = {
     angular: AngularIcon,
     reactjs: ReactjsIcon,
     vuejs: VuejsIcon,
   };
 
+  // open or closes the dropdown
   const toggleDropdown = () => setDropdownOpen((curr) => !curr);
 
+  // changes the current category by clicking an option
   const onSelectHandler = (option: string) => {
     onChange(option);
     setDropdownValue(option);
